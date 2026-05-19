@@ -1,0 +1,11 @@
+# Ignore raw data files
+*.csv
+*.xlsx
+*.xls
+*.json
+*.tsv
+
+# Ignore local environment configurations
+.DS_Store
+Thumbs.db
+.vscode/
