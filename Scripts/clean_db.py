@@ -1,29 +1,15 @@
-import pandas as pd
 import sqlite3
 
-def clean_database():
+def run_sql_cleaning():
     conn = sqlite3.connect('layoffs.db')
-    
-    # Load data
-    df = pd.read_sql('SELECT * FROM layoffs', conn)
-    
-    # 1. Remove Duplicates
-    df.drop_duplicates(inplace=True)
-    
-    # 2. Standardize
-    df['company'] = df['company'].str.strip()
-    df['industry'] = df['industry'].replace('', None)
-    
-    # 3. Handle NULL industries (fill with same company's industry)
-    df['industry'] = df.groupby('company')['industry'].ffill().bfill()
-    
-    # 4. Cleanup
-    df.dropna(subset=['total_laid_off', 'percentage_laid_off'], how='all', inplace=True)
-    
-    # Save back
-    df.to_sql('layoffs', conn, if_exists='replace', index=False)
+    cursor = conn.cursor()
+    # Read the file and execute as one big script
+    with open('Scripts/data_cleaning.sql', 'r') as f:
+        sql = f.read()
+        cursor.executescript(sql)
+    conn.commit()
     conn.close()
-    print("✅ Cleaning complete. Data is now professional-grade.")
+    print("✅ SQL cleaning script executed successfully.")
 
 if __name__ == "__main__":
-    clean_database()
+    run_sql_cleaning()

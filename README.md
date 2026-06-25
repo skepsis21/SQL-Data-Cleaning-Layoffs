@@ -41,3 +41,11 @@ Execution Workflow
     Bash
 
     python Scripts/verify_data.py
+
+    ### 🚀 Execution Workflow
+
+This project is built using **MySQL**. Please ensure you have a MySQL server running to execute the cleaning scripts.
+
+1. **Ingest Data**:
+   ```bash
+   python setup_db.py
