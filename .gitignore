@@ -1,11 +1,22 @@
-# Ignore raw data files
+# --- Raw Data Files ---
 *.csv
 *.xlsx
 *.xls
 *.json
 *.tsv
 
-# Ignore local environment configurations
+# --- Database & Secrets ---
+# Crucial: Never commit your database credentials
+.env
+# Ignore local SQLite database files or dumps
+*.db
+*.sqlite
+*.sql.dump
+
+# --- Local Environment & IDE ---
 .DS_Store
 Thumbs.db
 .vscode/
+.venv/
+__pycache__/
+*.pyc
