@@ -1,5 +1,5 @@
 # --- Raw Data Files ---
-*.csv
+# We removed *.csv so your layoffs.csv will be tracked
 *.xlsx
 *.xls
 *.json
